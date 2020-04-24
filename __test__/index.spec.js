@@ -1,10 +1,10 @@
 
-const { join } = require('path');
+const path = require('path');
 const fs = require('fs');
-const tmpdir = join(__dirname, '.tmp');
+const tmpdir = path.join(__dirname, '.tmp');
 
-const project1dir = join(tmpdir, './project1/dist/');
-const project2dir = join(tmpdir, './project2/dist/');
+const project1dir = path.join(tmpdir, './project1/dist/');
+const project2dir = path.join(tmpdir, './project2/dist/');
 
 require('./build');
 
