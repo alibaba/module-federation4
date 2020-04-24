@@ -1,6 +1,10 @@
 ## module-federation4
 
-`webpack-plugin-module-federation` for Webpack4.
+`webpack-plugin-module-federation` for Webpack4, backport from https://github.com/ScriptedAlchemy/webpack-external-import
+
+## State
+
+not production ready at present.
 
 ## Usage
 
