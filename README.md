@@ -17,14 +17,14 @@ npm install --save-dev webpack-plugin-module-federation
 Configure your `webpack.config.js`
 
 ```js
-const moduleFederationPlugin = require('webpack-plugin-module-federation');
+const ModuleFederationPlugin = require('webpack-plugin-module-federation');
 
 module.exports = {
     output: {
 		publicPath: 'http://localhost:3002/',
 	},
     plugins: [
-        new moduleFederationPlugin({
+        new ModuleFederationPlugin({
             name: '_federation_website2',
             library: 'website2',
             filename: 'remoteEntry.js',
@@ -46,7 +46,7 @@ module.exports = {
 In remote project, configure `webpack.config.js`.
 
 ```js
-const moduleFederationPlugin = require('webpack-plugin-module-federation');
+const ModuleFederationPlugin = require('webpack-plugin-module-federation');
 
 module.exports = {
     output: {
@@ -82,7 +82,7 @@ Add `remoteEntry` in your HTML
 </html>
 ```
 
-Then use dynamic import 
+Then use dynamic import
 
 ```jsx
 import React, { lazy, Suspense, useState } from 'react';
