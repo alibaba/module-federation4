@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "tsc -w",
+    "build": "tsc",
     "dev:example": "cross-env NODE_ENV=development concurrently --raw -k \"cd examples/website1 && npm start\" \"cd examples/website2 && npm start\"",
     "serve:example": "cross-env NODE_ENV=development concurrently --raw -k \"cd examples/website1 && npm serve\" \"cd examples/website2 && npm serve\"",
     "install:example": "concurrently --raw -k \"cd examples/website1 && yarn install\" \"cd examples/website2 && yarn install\""

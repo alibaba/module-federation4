@@ -3,4 +3,5 @@ node_js:
   - 12
 before_script:
   - npm install
+  - npm run build
 script: npm run test
