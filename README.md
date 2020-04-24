@@ -25,20 +25,18 @@ module.exports = {
 	},
     plugins: [
         new moduleFederationPlugin({
-            new ModuleFederationPlugin({
-                name: '_federation_website2',
-                library: 'website2',
-                filename: 'remoteEntry.js',
-                libraryTarget: 'global',
-                remotes: {
-                    'website1': 'website1'
-                },
-                expose: {
-                    Title: './src/Title',
-                    App: './src/App'
-                },
-            }),
-        });
+            name: '_federation_website2',
+            library: 'website2',
+            filename: 'remoteEntry.js',
+            libraryTarget: 'global',
+            remotes: {
+                'website1': 'website1'
+            },
+            expose: {
+                Title: './src/Title',
+                App: './src/App'
+            },
+        }),
     ]
 };
 ```
@@ -55,20 +53,18 @@ module.exports = {
 		publicPath: 'http://localhost:3001/',
 	},
     plugins: [
-        new moduleFederationPlugin({
-            new ModuleFederationPlugin({
-                name: '_federation_website1',
-                library: 'website1',
-                filename: 'remoteEntry.js',
-                libraryTarget: 'global',
-                remotes: {
-                    'website2': '_federation_website2'
-                },
-                expose: {
-                    App: './src/App'
-                },
-            }),
-        });
+        new ModuleFederationPlugin({
+            name: '_federation_website1',
+            library: 'website1',
+            filename: 'remoteEntry.js',
+            libraryTarget: 'global',
+            remotes: {
+                'website2': '_federation_website2'
+            },
+            expose: {
+                App: './src/App'
+            },
+        }),
     ]
 };
 ```
