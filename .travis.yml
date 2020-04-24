@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - 12
 before_script:
-  - npm install
-  - npm run build
-script: npm run test
+  - yarn install
+  - yarn build
+script: yarn test

@@ -7,7 +7,9 @@ module.exports = {
 	},
 	output: {
 		publicPath: path.join(__dirname, './dist'),
+		libraryTarget: 'commonjs',
 	},
+	target: 'node',
 	resolve: {
 		extensions: ['.jsx', '.js', '.json'],
 	},
@@ -23,16 +25,19 @@ module.exports = {
 			},
 		],
 	},
+	optimization: {
+		minimize: false,
+	},
 	plugins: [
 		new ModuleFederationPlugin({
 			name: '_federation_project2',
 			library: {
-				type: 'var',
+				type: 'global',
 				name: '_federation_project2',
 			},
 			filename: 'remoteEntry.js',
             remotes: {
-                'project1': '_federation_project2'
+                'project1': '_federation_project1'
 			},
 		}),
 	],

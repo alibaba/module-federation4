@@ -110,6 +110,16 @@ export default () => {
 
 See [examples here](./examples).
 
+```shell
+git clone 
+yarn install
+yarn build
+yarn install:example
+yarn dev:example
+```
+
+Open http://localhost:3001
+
 ## Preview
 
 ![preview](https://img.alicdn.com/tfs/TB1kD5fDeT2gK0jSZFvXXXnFXXa-600-311.gif)

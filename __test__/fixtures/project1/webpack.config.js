@@ -8,8 +8,12 @@ module.exports = {
 	output: {
 		publicPath: path.join(__dirname, './dist'),
 	},
+	target: 'node',
 	resolve: {
 		extensions: ['.jsx', '.js', '.json'],
+	},
+	optimization: {
+		minimize: false,
 	},
 	module: {
 		rules: [
@@ -27,7 +31,7 @@ module.exports = {
 		new ModuleFederationPlugin({
 			name: '_federation_project1',
 			library: {
-				type: 'var',
+				type: 'global',
 				name: '_federation_project1',
 			},
 			filename: 'remoteEntry.js',

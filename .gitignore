@@ -3,3 +3,5 @@ lib
 .tmp
 dist
 !src/webpack/lib
+.idea
+yarn.lock

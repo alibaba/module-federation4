@@ -18,5 +18,21 @@ describe('Build', () => {
         expect(fs.existsSync(path.join(project1dir, './remoteEntry.js'))).toBeTruthy();
         expect(fs.existsSync(path.join(project2dir, './remoteEntry.js'))).toBeTruthy();
     });
+
 });
 
+describe('Remote module', () => {
+    test('can import remote module', async () => {
+        // load remoteEntry of project1
+        require(path.join(project1dir, './remoteEntry.js'));
+
+        const {
+            hello,
+            remoteHello,
+        } = require(path.join(project2dir, './main.js'));
+
+        expect(hello).toEqual('hello project2');
+
+        expect(await remoteHello).toEqual('hello project1');
+    });
+});

@@ -115,7 +115,7 @@ export default class ContainerEntryModule extends Module {
 				`\n${"var"} __MODULE_MAP__ = {${getters.join(',')}};`,
 				`\n${"var"} __GET_MODULE__ = ${this.basicFunction(
 					['module'],
-					`console.log(__MODULE_MAP__);return typeof __MODULE_MAP__[module] ==='function' ? __MODULE_MAP__[module].apply(null) : Promise.reject(new Error('Module ' + module + ' does not exist.'))`,
+					`return typeof __MODULE_MAP__[module] ==='function' ? __MODULE_MAP__[module].apply(null) : Promise.reject(new Error('Module ' + module + ' does not exist.'))`,
 				)};`,
 				`\n\n module.exports = {\n`,
 				Template.indent([
