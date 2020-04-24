@@ -1,0 +1,35 @@
+{
+  "name": "webpack-plugin-module-federation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "tsc -w",
+    "dev:example": "cross-env NODE_ENV=development concurrently --raw -k \"cd examples/website1 && npm start\" \"cd examples/website2 && npm start\"",
+    "serve:example": "cross-env NODE_ENV=development concurrently --raw -k \"cd examples/website1 && npm serve\" \"cd examples/website2 && npm serve\"",
+    "install:example": "concurrently --raw -k \"cd examples/website1 && yarn install\" \"cd examples/website2 && yarn install\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@types/jest": "^25.2.1",
+    "@types/webpack": "^4.41.12",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^5.1.0",
+    "cross-env": "^7.0.2",
+    "jest": "^25.4.0",
+    "shelljs": "^0.8.3",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ]
+}
