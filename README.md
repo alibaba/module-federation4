@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/alibaba/module-federation4.svg?branch=master)](https://travis-ci.org/alibaba/module-federation4)
+
 ## module-federation4
 
 `webpack-plugin-module-federation` for Webpack4, backport from https://github.com/ScriptedAlchemy/webpack-external-import
