@@ -21,11 +21,6 @@ module.exports = {
 		extensions: ['.jsx', '.js', '.json'],
 	},
 
-	externals: {
-		'react': 'React',
-		'react-dom': 'ReactDOM'
-	},
-
 	module: {
 		rules: [
 			{
@@ -48,7 +43,7 @@ module.exports = {
 			},
 			filename: 'remoteEntry.js',
 			// shared is not support now
-			// shared: ['react', 'react-dom'],
+			shared: ['react', 'react-dom'],
 			remotes: {
 				'website1': 'website1'
 			},

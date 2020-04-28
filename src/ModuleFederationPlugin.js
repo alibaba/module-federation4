@@ -1,6 +1,8 @@
 import JavascriptModulesPlugin from 'webpack/lib/JavascriptModulesPlugin';
 import Template from 'webpack/lib/Template';
 import propertyAccess from './webpack/lib/propertyAccess';
+import ImportDependency from 'webpack/lib/dependencies/ImportDependency';
+
 import validateOptions from 'schema-utils';
 import ContainerExposedDependency from './ContainerExposedDependency';
 import { ConcatSource } from 'webpack-sources';
@@ -25,9 +27,9 @@ export default class ModuleFederationPlugin {
 			{
 				type: 'object',
 				properties: {
-					// shared: {
-					// 	type: 'object',
-					// },
+					shared: {
+						type: ['object', 'array'],
+					},
 					exposes: {
 						type: ['object', 'array'],
 					},
@@ -186,29 +188,29 @@ export default class ModuleFederationPlugin {
 		};
 
 
-		// const handleShared = (value, type, callback) => {
+		const handleShared = (value, type, callback) => {
 
-		// 	let externalConfig = value;
+			let externalConfig = value;
 
-		// 	// When no explicit type is specified, extract it from the externalConfig
-		// 	if (
-		// 		type === undefined &&
-		// 		UNSPECIFIED_EXTERNAL_TYPE_REGEXP.test(externalConfig)
-		// 	) {
-		// 		const idx = externalConfig.indexOf(' ');
-		// 		type = externalConfig.substr(0, idx);
-		// 		externalConfig = externalConfig.substr(idx + 1);
-		// 	}
+			// When no explicit type is specified, extract it from the externalConfig
+			if (
+				type === undefined &&
+				UNSPECIFIED_EXTERNAL_TYPE_REGEXP.test(externalConfig)
+			) {
+				const idx = externalConfig.indexOf(' ');
+				type = externalConfig.substr(0, idx);
+				externalConfig = externalConfig.substr(idx + 1);
+			}
 
-		// 	callback(
-		// 		null,
-		// 		new SharedModule(
-		// 			externalConfig,
-		// 			'default', // TODO: remove hardcode
-		// 			value,
-		// 		),
-		// 	);
-		// };
+			callback(
+				null,
+				new SharedModule(
+					externalConfig,
+					'default', // TODO: remove hardcode
+					value,
+				),
+			);
+		};
 
 
 		compiler.hooks.normalModuleFactory.tap(ModuleFederationPlugin.name, (nmf) => {
@@ -220,15 +222,14 @@ export default class ModuleFederationPlugin {
 					if (this.options.remotes[requestScope]) {
 						return handleRemote(result.request, null, callback);
 					}
-					// if (this.options.shared[request]) {
-					// 	return handleShared(
-					// 		this.options.shared[request],
-					// 		undefined,
-					// 		callback,
-					// 	);
-					// }
+					if (this.options.shared[request]) {
+						return handleShared(
+							this.options.shared[request],
+							undefined,
+							callback,
+						);
+					}
 					fn(result, (error, mod) => {
-						
 						callback(error, mod);
 					});
 				};

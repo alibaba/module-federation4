@@ -39,16 +39,11 @@ module.exports = {
 				'website2': '_federation_website2'
 			},
 			// shared is not support now
-			// shared: ['react', 'react-dom']
+			shared: ['react', 'react-dom']
 		}),
 		new HtmlWebpackPlugin({
 			template: './src/template.html',
 			chunks: ['main'],
 		}),
 	],
-
-	externals: {
-		'react': 'React',
-		'react-dom': 'ReactDOM'
-	},
 };

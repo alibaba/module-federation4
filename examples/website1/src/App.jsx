@@ -6,7 +6,7 @@ import {
     Switch,
     Route,
     Link
-  } from "react-router-dom";
+} from "react-router-dom";
 
 
 const Website2 = lazy(() => import('website2/App').then(mod => mod.default));
