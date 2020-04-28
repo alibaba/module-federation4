@@ -2,6 +2,7 @@ import JavascriptModulesPlugin from 'webpack/lib/JavascriptModulesPlugin';
 import Template from 'webpack/lib/Template';
 import propertyAccess from './webpack/lib/propertyAccess';
 import ImportDependency from 'webpack/lib/dependencies/ImportDependency';
+import AsyncDependenciesBlock from 'webpack/lib/AsyncDependenciesBlock';
 
 import validateOptions from 'schema-utils';
 import ContainerExposedDependency from './ContainerExposedDependency';
@@ -158,6 +159,29 @@ export default class ModuleFederationPlugin {
 					this.options.name,
 					callback,
 				);
+
+				compilation.hooks.optimizeDependencies.tap(ModuleFederationPlugin.name, modules => {
+					compilation.dependencyTemplates.set(
+						ImportDependency,
+						new ImportDependency.Template()
+					);
+
+					for (let mod of modules) {
+						for (let i = 0; i < mod.dependencies.length; i ++) {
+							const dep = mod.dependencies[i];
+							if (dep && this.options.shared[dep.request]) {
+								// shared
+								mod.dependencies.splice(i, 1);
+								mod.blocks.push(new AsyncDependenciesBlock(
+									{},
+									dep.originModule,
+									dep.loc,
+									dep.request,
+								));
+							}
+						}
+					}
+				});
 
 			},
 		);
